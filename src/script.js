@@ -1,7 +1,11 @@
 var config = {
     type: Phaser.AUTO,
     width: 800,
-    height: 800,
+    height: 1000,
+    scale: {
+        mode: Phaser.Scale.FIT,
+        autoCenter: Phaser.Scale.CENTER_BOTH
+    },
     physics: {
         default: "arcade",
         arcade: {
@@ -33,6 +37,11 @@ function preload() {
     this.load.image("catGirlPicture", "assets/portrait only_cat_kigurumi.png"); //cat piture
     this.load.image("ground", "assets/platform.png"); //plataforma
     this.load.image("star", "assets/star.png"); //estrellas
+    this.load.spritesheet("controls", "assets/tilemap_packed.png", {
+        //items
+        frameWidth: 544 / 34,
+        frameHeight: 384 / 24,
+    });
     this.load.spritesheet("objects", "assets/objects.png", {
         //items
         frameWidth: 96 / 6,
@@ -53,6 +62,7 @@ function preload() {
 function create() {
     //PERSONAJE DESC
     this.add.image(400, 700, "sky").setTint(0xeeeeff);
+    this.add.image(400, 1100, "sky").setTint(0x000000);
     girlPicture = this.physics.add.staticGroup();
     girlPicture.create(100, 700, "girlPicture").setScale(3);
 
@@ -144,7 +154,33 @@ function create() {
 
     //LLAMAR CONTROLES
     cursors = this.input.keyboard.createCursorKeys();
-
+    //controles telefono
+    upButton = this.add.sprite(650, 900, 'controls',757).setScale(5).setInteractive();
+    upButton.setInteractive();
+    upButton.on('pointerdown', function (pointer) {
+        cursors.up.isDown = true;
+    });
+    upButton.on('pointerup', function (pointer) {
+        cursors.up.isDown = false;
+    });
+    leftButton = this.add.sprite(100, 900, 'controls',760).setScale(5).setInteractive();
+    leftButton.setInteractive();
+    leftButton.on('pointerdown', function (pointer) {
+        cursors.left.isDown = true;
+    });
+    leftButton.on('pointerup', function (pointer) {
+        cursors.left.isDown = false;
+    });
+    rightButton = this.add.sprite(200, 900, 'controls',758).setScale(5).setInteractive();
+    rightButton.setInteractive();
+    leftButton.on('pointerdown', () => {
+    });
+    rightButton.on('pointerdown', function (pointer) {
+        cursors.right.isDown = true;
+    });
+    rightButton.on('pointerup', function (pointer) {
+        cursors.right.isDown = false;
+    });
     //ESTRELLAS
     stars = this.physics.add.group({
         key: "star",
@@ -245,4 +281,10 @@ function hitBomb(player, bomb) {
     girlPicture.setTint(0xff0000);
     player.anims.play("turn");
     gameOver = 1;
+}
+function evento(){
+    var eventoTeclado = new KeyboardEvent('keydown', {
+        key: 'ArrowRight', 
+    });
+    document.dispatchEvent(eventoTeclado);
 }
