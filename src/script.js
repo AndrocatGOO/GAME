@@ -155,7 +155,7 @@ function create() {
     //LLAMAR CONTROLES
     cursors = this.input.keyboard.createCursorKeys();
     //controles telefono
-    upButton = this.add.sprite(650, 900, 'controls',757).setScale(5).setInteractive();
+    upButton = this.add.sprite(650, 900, 'controls',757).setScale(8).setInteractive();
     upButton.setInteractive();
     upButton.on('pointerdown', function (pointer) {
         cursors.up.isDown = true;
@@ -163,7 +163,7 @@ function create() {
     upButton.on('pointerup', function (pointer) {
         cursors.up.isDown = false;
     });
-    leftButton = this.add.sprite(100, 900, 'controls',760).setScale(5).setInteractive();
+    leftButton = this.add.sprite(100, 900, 'controls',760).setScale(8).setInteractive();
     leftButton.setInteractive();
     leftButton.on('pointerdown', function (pointer) {
         cursors.left.isDown = true;
@@ -171,7 +171,7 @@ function create() {
     leftButton.on('pointerup', function (pointer) {
         cursors.left.isDown = false;
     });
-    rightButton = this.add.sprite(200, 900, 'controls',758).setScale(5).setInteractive();
+    rightButton = this.add.sprite(300, 900, 'controls',758).setScale(8).setInteractive();
     rightButton.setInteractive();
     leftButton.on('pointerdown', () => {
     });
